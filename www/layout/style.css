@@ -1,0 +1,295 @@
+@font-face {
+	font-family: Fantasque;
+	font-weight: normal;
+	font-style: normal;
+	src: url(fonts/Fantasque.woff2) format("woff2");
+}
+
+@font-face {
+	font-family: Fantasque;
+	font-weight: bold;
+	font-style: normal;
+	src: url(fonts/Fantasque-Bold.woff2) format("woff2");
+}
+
+@font-face {
+	font-family: Fantasque;
+	font-weight: normal;
+	font-style: italic;
+	src: url(fonts/Fantasque-Italic.woff2) format("woff2");
+}
+
+@font-face {
+	font-family: Fantasque;
+	font-weight: bold;
+	font-style: italic;
+	src: url(fonts/Fantasque-BoldItalic.woff2) format("woff2");
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+button {
+	background: none;
+	border: 0;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	margin: 0;
+	padding: 0;
+}
+
+button[disabled] {
+	opacity: 25%;
+}
+
+div#z div.dec, div#z div.hex {
+	border-color: #404040;
+}
+
+div.bin {
+	justify-content: center;
+	display: flex;
+}
+
+div.bin button {
+	border: 1px solid #c0c0c0;
+	border-radius: 100%;
+	font-size: 1rem;
+	height: 1em;
+	line-height: 100%;
+	margin: 0 0.25em;
+	width: 1em;
+}
+
+div.bin button.active {
+	background: #c0c0c0;
+	color: #161032;
+}
+
+div.bin button:hover {
+	border-color: #faff81;
+	color: #faff81;
+}
+
+div.config {
+	background: #13081e;
+	color: inherit;
+	padding: 0.25em;
+}
+
+div.config button {
+	padding: 0.25em;
+	width: 3em;
+}
+
+div.config button.active {
+	background: #ffc53a;
+	color: #e06d06;
+	outline: 2px solid #faff81;
+}
+
+div.config button:hover {
+	cursor: pointer;
+}
+
+div.dec input {
+	width: 6em;
+}
+
+div.dec, div.hex {
+	border: 2px solid #5f577e;
+	height: min-content;
+	text-align: right;
+	width: min-content;
+}
+
+div.hex input {
+	width: 5em;
+}
+
+div.label {
+	cursor: default;
+}
+
+div.label.overflow {
+	background: none;
+	color: #f00;
+}
+
+div.label.underflow {
+	background: none;
+	color: #0f0;
+}
+
+div.number {
+	display: flex;
+}
+
+div.palette {
+	padding: 0.25em;
+	text-align: left;
+}
+
+div.palette, div.register.active {
+	background: #313256;
+	color: inherit;
+}
+
+div.palette button {
+	border: 1px solid #c0c0c0;
+	height: 1.5em;
+	line-height: 100%;
+	position: relative;
+	width: 4em;
+}
+
+div.register {
+	align-items: center;
+	display: flex;
+	justify-content: space-evenly;
+	padding: 0.25em;
+}
+
+div.register div {
+	margin: 0 0.5em;
+	white-space: nowrap;
+}
+
+div.register.active div.active {
+	border-color: #e06d06;
+}
+
+footer {
+	background: none;
+	bottom: 0;
+	color: #c0c0c0;
+	font-size: 0.6rem;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	z-index: 1;
+}
+
+footer a {
+	background: none;
+	color: #fff;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+header {
+	display: none;
+}
+
+html {
+	background: fixed #000 url(bg.svg) 50% 50%;
+	background-size: cover;
+	color: #c0c0c0;
+	font: 16pt/150% Fantasque, "Courier New", monospace;
+	padding: 0;
+}
+
+input {
+	background: none;
+	border: 0;
+	color: inherit;
+	cursor: default;
+	font-family: inherit;
+	font-size: inherit;
+	text-transform: uppercase;
+}
+
+main {
+	background: #161032;
+	border: 2px solid #5f577e;
+	box-shadow: 8px 8px 16px #000;
+	color: inherit;
+	left: 50%;
+	top: 50%;
+	position: absolute;
+	text-align: center;
+	transform: translate(-50%, -50%);
+	z-index: 2;
+}
+
+span.count {
+	right: 0;
+}
+
+span.count, span.hotkey {
+	background: #161032;
+	color: inherit;
+	font-size: 0.7rem;
+	height: 1em;
+	line-height: 100%;
+	margin: 1px;
+	max-width: 2em;
+	min-width: 1em;
+	position: absolute;
+	top: 0;
+}
+
+span.hotkey {
+	left: 0;
+}
+
+@media (max-width: 1440px) {
+	body, html, main {
+		height: 100%;
+	}
+
+	div.number, div.registers {
+		width: 100%;
+	}
+
+	div.bin, div.config {
+		flex-wrap: wrap;
+	}
+
+	div.bin div {
+		padding: 0.25em 0;
+	}
+
+	div.number, main {
+		justify-content: space-evenly;
+	}
+
+	main {
+		border: 0;
+		box-shadow: none;
+		display: flex;
+		flex-direction: column;
+		left: auto;
+		position: relative;
+		top: auto;
+		transform: none;
+	}
+}
+
+@media (max-width: 1024px) {
+	div.number {
+		flex-direction: column;
+	}
+
+	div.palette {
+		padding: 0.25em 0;
+		width: 100%;
+	}
+
+	html {
+		font-size: 14pt;
+	}
+
+	table {
+		margin: auto;
+	}
+}
+
+@media (max-width: 640px) {
+	div.register div.bin {
+		display: none;
+	}
+}

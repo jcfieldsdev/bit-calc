@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en"><head><title>Bit Calc</title>
+<meta charset="utf-8">
+<meta name="title" content="Bit Calc">
+<meta name="description" content="A basic binary calculator.">
+<meta name="viewport" content="initial-scale=1.0">
+<link href="mailto:jcfields@jcfields.dev" rel="author" title="J.C. Fields">
+<link href="layout/manifest.json" rel="manifest" type="application/json">
+<link href="layout/style.css" media="screen" rel="stylesheet" type="text/css">
+<link href="layout/favicon.png" rel="shortcut icon" type="image/png">
+<link href="layout/homeicon.png" rel="apple-touch-icon-precomposed" type="image/png">
+<script src="calc.js" type="text/javascript"></script></head>
+<body><header><h1>Bit Calc</h1></header>
+<main><noscript><p>Must have JavaScript enabled.</p></noscript>
+<div id="sizes" class="config">
+	<button type="button" value="8" title="8-bit">BYTE</button>
+	<button type="button" value="16" title="16-bit">WORD</button>
+	<button type="button" value="32" title="32-bit">DWORD</button>
+</div>
+<div class="number">
+	<div class="registers">
+		<div id="x" class="register">
+			<div class="label">x</div>
+			<div class="bin"></div>
+			<div class="dec"><input type="text" tabindex="1" pattern="[0-9]+"></div>
+			<div class="hex">0x<input type="text" tabindex="3" pattern="[0-9a-fA-F]+"></div>
+		</div>
+		<div id="y" class="register">
+			<div class="label">y</div>
+			<div class="bin"></div>
+			<div class="dec"><input type="text" tabindex="2" pattern="[0-9]+"></div>
+			<div class="hex">0x<input type="text" tabindex="4" pattern="[0-9a-fA-F]+"></div>
+		</div>
+	</div>
+	<div id="unary" class="palette"><table>
+		<tr>
+			<td><button type="button" value="clear" title="Clear All Bits (Esc)">CLR <span class="hotkey">&#x238b;</span></button></td>
+			<td></td>
+			<td><button type="button" title="Clear All Registers (Alt+Esc)" id="clearAll">AC <span class="hotkey">&#9095;&#x238b;</span></button></td>
+		</tr>
+		<tr>
+			<td><button type="button" value="not" title="Bitwise Not (!)">NOT <span class="hotkey">!</span></button></td>
+			<td><button type="button" value="decrement" title="Decrement (-)">DEC <span class="hotkey">-</span></button></td>
+			<td><button type="button" value="increment" title="Increment (+)">INC <span class="hotkey">+</span></button></td>
+		</tr>
+		<tr>
+			<td><button type="button" value="reverse" title="Reverse Order of Bits (\)">FLIP <span class="hotkey">\</span></button></td>
+			<td><button type="button" value="rotateLeft" title="Rotate Left by 1 Bit ([)">ROL <span class="hotkey">[</span></button></td>
+			<td><button type="button" value="rotateRight" title="Rotate Right by 1 Bit (])">ROR <span class="hotkey">]</span></button></td>
+		</tr>
+		<tr>
+			<td><button type="button" value="endian" title="Switch Endianness (/)" class="word">END <span class="hotkey">/</span></button></td>
+			<td><button type="button" value="shiftLeft1" title="Shift Left by 1 Bit (;)">&lt;&lt; 1 <span class="hotkey">;</span></button></td>
+			<td><button type="button" value="shiftRight1" title="Shift Right by 1 Bit (')">&gt;&gt; 1 <span class="hotkey">'</span></button></td>
+		</tr>
+		<tr>
+			<td><button type="button" title="Swap x and y Registers (S)" id="swap">SWAP <span class="hotkey">S</span></button></td>
+			<td><button type="button" value="shiftLeft4" title="Shift Left by 4 Bits (&lt;)">&lt;&lt; 4 <span class="hotkey">&lt;</span></button></td>
+			<td><button type="button" value="shiftRight4" title="Shift Right by 4 Bits (&gt;)">&gt;&gt; 4 <span class="hotkey">&gt;</span></button></td>
+		</tr>
+		<tr>
+			<td><button type="button" title="Recall from Memory (Shift+R)" id="recall">RCL <span class="hotkey">&#8679;R</span> <span class="count">0</span></button></td>
+			<td><button type="button" value="shiftLeft8" title="Shift Left by 8 Bits" class="word">&lt;&lt; 8</button></td>
+			<td><button type="button" value="shiftRight8" title="Shift Right by 8 Bits" class="word">&gt;&gt; 8</button></td>
+		</tr>
+	</table></div>
+</div>
+<div id="binary" class="config">
+	<button type="button" value="and" title="Bitwise And">AND</button>
+	<button type="button" value="or" title="Bitwise Or">OR</button>
+	<button type="button" value="xor" title="Bitwise Xor">XOR</button>
+	<button type="button" value="add" title="Addition">+</button>
+	<button type="button" value="subtract" title="Subtraction">&minus;</button>
+	<button type="button" value="multiply" title="Multiplication">&times;</button>
+	<button type="button" value="divide" title="Integer Division">DIV</button>
+	<button type="button" value="modulo" title="Modulo">MOD</button>
+</div>
+<div class="number">
+	<div class="registers">
+		<div id="z" class="register">
+			<div class="label">z</div>
+			<div class="bin"></div>
+			<div class="dec"><input type="text" pattern="[0-9]+" disabled="disabled"></div>
+			<div class="hex">0x<input type="text" pattern="[0-9a-fA-F]+" disabled="disabled"></div>
+		</div>
+	</div>
+	<div id="move" class="palette"><table>
+		<tr>
+			<td><button type="button" title="Store to Memory (Shift+S)" id="store">STO <span class="hotkey">&#8679;S</span></button></td>
+			<td><button type="button" value="x" title="Copy to x Register (x)">&rarr; x <span class="hotkey">x</span></button></td>
+			<td><button type="button" value="y" title="Copy to y Register (y)">&rarr; y <span class="hotkey">y</span></button></td>
+		</tr>
+	</table></div>
+</div></main>
+<footer>Created by <a href="mailto:jcfields@jcfields.dev">J.C. Fields</a>. Hosted by <a href="https://github.com/jcfieldsdev/bit-calc">GitHub</a>.</footer></body></html>
